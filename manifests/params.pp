@@ -3,7 +3,6 @@
 # A set of default parameters for Telegraf's configuration.
 #
 class telegraf::params {
-
   if $facts['os']['family'] == 'windows' {
     $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
     $config_file_owner    = 'Administrator'
@@ -53,18 +52,22 @@ class telegraf::params {
   $windows_package_url    = 'https://chocolatey.org/api/v2/'
 
   $outputs = {
-    'influxdb' => [{
-      'urls'     => [ 'http://localhost:8086' ],
-      'database' => 'telegraf',
-      'username' => 'telegraf',
-      'password' => 'metricsmetricsmetrics',
-    }],
+    'influxdb' => [
+      {
+        'urls'     => ['http://localhost:8086'],
+        'database' => 'telegraf',
+        'username' => 'telegraf',
+        'password' => 'metricsmetricsmetrics',
+      }
+    ],
   }
 
   $inputs = {
-    'cpu' => [{
-      'percpu'   => true,
-      'totalcpu' => true,
-    }],
+    'cpu' => [
+      {
+        'percpu'   => true,
+        'totalcpu' => true,
+      },
+    ],
   }
 }
